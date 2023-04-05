@@ -27,25 +27,6 @@
 				<version>3.0.0</version>
 			</plugin>
 			<plugin>
-      <groupId>org.nuisto</groupId>
-      <artifactId>mule-lint-maven-plugin</artifactId>
-      <version>0.5.3</version>
-	<executions>
-          <execution>
-            <id>runit</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>analyze-mule</goal>
-            </goals>
-          </execution>
-        </executions>			
-      <configuration>
-        <rules>rules.txt</rules>
-        <output>mule-lint-results.json</output>
-        <dictionary>words.txt</dictionary>
-      </configuration>
-    </plugin>
-			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
