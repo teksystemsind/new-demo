@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>com.mycompany</groupId>
 	<artifactId>codetest</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
+
 	<name>codetest</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
 		<app.runtime>4.4.0-20220824</app.runtime>
-		<mule.maven.plugin.version>3.8.0</mule.maven.plugin.version>
-		<munit.version>2.3.13</munit.version>
-		<sonar.organization>teksystemsind</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<mule.maven.plugin.version>3.8.0</mule.maven.plugin.version>		
+		<munit.version>2.3.13</munit.version>	
+  <sonar.organization>teksystemsind</sonar.organization>
+  <sonar.host.url>https://sonarcloud.io</sonar.host.url>				  
 	</properties>
 	<build>
 		<plugins>
@@ -23,7 +26,25 @@
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.0.0</version>
 			</plugin>
-			
+			<plugin>
+      <groupId>org.nuisto</groupId>
+      <artifactId>mule-lint-maven-plugin</artifactId>
+      <version>0.5.3</version>
+	<executions>
+          <execution>
+            <id>runit</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>analyze-mule</goal>
+            </goals>
+          </execution>
+        </executions>			
+      <configuration>
+        <rules>rules.txt</rules>
+        <output>mule-lint-results.json</output>
+        <dictionary>words.txt</dictionary>
+      </configuration>
+    </plugin>
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
@@ -40,11 +61,12 @@
 						<workerType>MICRO</workerType>
 						<region>us-east-2</region>
 						<workers>1</workers>
-						<objectStoreV2>true</objectStoreV2>
+						<objectStoreV2>true</objectStoreV2>						
 					</cloudHubDeployment>
 					<classifier>mule-application</classifier>
 				</configuration>
 			</plugin>
+						 
 			<plugin>
 				<groupId>com.mulesoft.munit.tools</groupId>
 				<artifactId>munit-maven-plugin</artifactId>
@@ -68,8 +90,10 @@
 					</coverage>
 				</configuration>
 			</plugin>
+					   
 		</plugins>
 	</build>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.mule.connectors</groupId>
@@ -82,7 +106,7 @@
 			<artifactId>mule-sockets-connector</artifactId>
 			<version>1.2.2</version>
 			<classifier>mule-plugin</classifier>
-		</dependency>
+		</dependency>					
 		<dependency>
 			<groupId>com.mulesoft.munit</groupId>
 			<artifactId>munit-runner</artifactId>
@@ -102,7 +126,7 @@
 			<artifactId>assertions</artifactId>
 			<version>1.0.2</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency>			  
 	</dependencies>
 	<repositories>
 		<repository>
@@ -118,6 +142,7 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>
+
 	<pluginRepositories>
 		<pluginRepository>
 			<id>mulesoft-releases</id>
@@ -129,4 +154,5 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+
 </project>
