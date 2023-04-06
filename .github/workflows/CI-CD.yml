@@ -13,7 +13,7 @@ jobs:
   needs: test
   uses: teksystemsind/reusable-workflows/.github/workflows/build-mule.yml@master
  analyze:
-  uses: teksystemsind/reusable-workflows/.github/workflows/run-sonar-cloud.yml@master
+  uses: teksystemsind/new-demo/.github/workflows/sonar.yml@master
  deploy:
     needs: [build , analyze]
     uses: teksystemsind/reusable-workflows/.github/workflows/deploy-to-cloudhub.yml@master
