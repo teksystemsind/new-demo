@@ -7,7 +7,6 @@ on:
     branches: [ main ]
 jobs:
  test:
-  needs: mulelint
   uses: teksystemsind/reusable-workflows/.github/workflows/run-munits.yml@master
   
  build:
@@ -16,7 +15,7 @@ jobs:
  analyze:
   uses: teksystemsind/reusable-workflows/.github/workflows/run-sonar-cloud.yml@master
  deploy:
-    needs: build
+    needs: [build , analyze]
     uses: teksystemsind/reusable-workflows/.github/workflows/deploy-to-cloudhub.yml@master
     with:
       artifactName: $(ls *.jar | head -1)
