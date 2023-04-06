@@ -1,0 +1,25 @@
+name: CICD
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ main ]
+jobs:
+ test:
+  needs: mulelint
+  uses: teksystemsind/reusable-workflows/.github/workflows/run-munits.yml@master
+  
+ build:
+  needs: test
+  uses: teksystemsind/reusable-workflows/.github/workflows/build-mule.yml@master
+ analyze:
+  uses: teksystemsind/reusable-workflows/.github/workflows/run-sonar-cloud.yml@master
+ deploy:
+    needs: build
+    uses: teksystemsind/reusable-workflows/.github/workflows/deploy-to-cloudhub.yml@master
+    with:
+      artifactName: $(ls *.jar | head -1)
+    secrets:
+      ANYPOINT_USERNAME: ${{ secrets.ANYPOINT_USERNAME }}
+      ANYPOINT_PASSWORD: ${{ secrets.ANYPOINT_PASSWORD }}
