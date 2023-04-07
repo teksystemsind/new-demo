@@ -3,8 +3,7 @@ name: Branchprotection
 on:
   workflow_call: null
   push:
-    branches:
-      - akingupta-patch-1
+    branches: [akingupta-patch-1]
 jobs:
   run-updater:
     runs-on: ubuntu-latest
