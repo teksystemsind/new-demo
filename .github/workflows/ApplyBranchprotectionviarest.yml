@@ -10,7 +10,6 @@ jobs:
         run: >
           curl -L \
           -X PUT \
-          -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.UPDATEBRANCHPROTECTIONRULETOKEN }}"\
           -H "Host:api.github.com"
           -H "Content-Type:application/json"
