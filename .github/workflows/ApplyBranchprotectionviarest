@@ -2,7 +2,6 @@
 name: Branchprotection
 on:
   push:
-    branches: [akingupta-patch-1]
 jobs:
   run-updater:
     runs-on: ubuntu-latest
