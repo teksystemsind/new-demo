@@ -12,10 +12,8 @@ jobs:
  build:
   needs: test
   uses: teksystemsind/reusable-workflows/.github/workflows/build-mule.yml@master
- sonar:
-  uses: ./.github/workflows/sonar.yml
  deploy:
-    needs: test
+    needs: build
     uses: teksystemsind/reusable-workflows/.github/workflows/deploy-to-cloudhub.yml@master
     with:
       artifactName: $(ls *.jar | head -1)
