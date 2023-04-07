@@ -1,7 +1,6 @@
 ---
 name: Branchprotection
 on:
-  workflow_call: null
   push:
     branches: [akingupta-patch-1]
 jobs:
