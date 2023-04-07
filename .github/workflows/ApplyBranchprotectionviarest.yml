@@ -6,11 +6,14 @@ jobs:
   run-updater:
     runs-on: ubuntu-latest
     steps:
+      - name: just
+        run : echo ${{ secrets.UPDATEBRANCHPROTECTIONRULETOKEN }}
       - name: REST API with curl
         run: |
           curl -L \
           -X PUT \
           -H 'Authorization: Bearer ${{ secrets.UPDATEBRANCHPROTECTIONRULETOKEN }}'\
+          -H 'Accept: application/vnd.github+json'\
           -H 'Host:api.github.com'\
           -H 'Content-Type:application/json'\
           -H 'X-GitHub-Api-Version: 2022-11-28' \
