@@ -1,4 +1,4 @@
-name: CICD
+-name: CICD
 
 on:
   push:
@@ -13,9 +13,10 @@ jobs:
   needs: test
   uses: teksystemsind/reusable-workflows/.github/workflows/build-mule.yml@master
  sonar:
-  uses: teksystemsind/reusable-workflows/.github/workflows/run-sonar-cloud.yml@master
+  needs: test
+  uses: ./.github/workflows/sonar.yml
  deploy:
-    needs: build
+    needs: sonar
     uses: teksystemsind/reusable-workflows/.github/workflows/deploy-to-cloudhub.yml@master
     with:
       artifactName: $(ls *.jar | head -1)
