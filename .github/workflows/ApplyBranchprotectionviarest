@@ -4,7 +4,7 @@ on:
   workflow_call: null
   push:
     branches:
-      - develop
+      - akingupta-patch-1
 jobs:
   run-updater:
     runs-on: ubuntu-latest
